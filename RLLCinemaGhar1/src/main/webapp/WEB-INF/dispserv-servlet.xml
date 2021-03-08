@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:component-scan base-package="com.cinemaGhar1.*"></context:component-scan>
+	<context:property-placeholder
+		location="classpath:database.properties" />
+	<mvc:annotation-driven />
+
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="myDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${database.driver}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+	</bean>
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.cinemaGhar1.dao.entity.Admin</value>
+				<value>com.cinemaGhar1.dao.entity.User</value>
+				<value>com.cinemaGhar1.dao.entity.Movies</value>
+				<value>com.cinemaGhar1.dao.entity.PaymentInfo</value>
+				<value>com.cinemaGhar1.dao.entity.Seats</value>
+				<value>com.cinemaGhar1.dao.entity.ShowTimings</value>
+				<value>com.cinemaGhar1.dao.entity.Theaters</value>
+				<value>com.cinemaGhar1.dao.entity.BookingDetails</value>
+				<value>com.cinemaGhar1.dao.entity.Ticket</value>
+				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+    <bean id="admin" class="com.cinemaGhar1.dao.entity.Admin"/>
+	<bean id="adminDao" class="com.cinemaGhar1.dao.impl.AdminDaoImpl"/>
+	<bean id="adminService" class="com.cinemaGhar1.service.AdminServiceImpl"/>
+	
+	<bean id="user" class="com.cinemaGhar1.dao.entity.User"/>
+	<bean id="userDao" class="com.cinemaGhar1.dao.impl.UserDaoImpl"/>
+	<bean id="userService" class="com.cinemaGhar1.service.UserServiceImpl"/>
+	
+	<bean id="movies" class="com.cinemaGhar1.dao.entity.Movies"/>
+	<bean id="moviesDao" class="com.cinemaGhar1.dao.impl.MoviesDaoImpl"/>
+	<bean id="moviesService" class="com.cinemaGhar1.service.MoviesServiceImpl"/>
+	
+	<bean id="ticket" class="com.cinemaGhar1.dao.entity.Ticket"/>
+	<bean id="ticketDao" class="com.cinemaGhar1.dao.impl.TicketDaoImpl"/>
+	<bean id="ticketService" class="com.cinemaGhar1.service.TicketServiceImpl"/>
+	
+	
+</beans>
+

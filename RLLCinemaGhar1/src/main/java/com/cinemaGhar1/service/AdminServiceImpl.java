@@ -28,8 +28,7 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Override
 	public String getAdminPassword(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminDao.getAdminPassword(email);
 	}
 
 	@Override
@@ -39,8 +38,8 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public String getAdminEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminDao.getAdminEmail(email);
+	
 	}
 
 }

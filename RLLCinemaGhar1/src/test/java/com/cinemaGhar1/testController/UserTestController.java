@@ -36,7 +36,7 @@ public class UserTestController
 		
 		String expectedloginS="user exists";
 		
-		String actualloginS =  userRestController.login("swapna@gmail.com", "1234");
+		String actualloginS =  userRestController.login("s@gmail.com", "1234");
 		
 		assertEquals(expectedloginS, actualloginS);
 		
@@ -51,7 +51,7 @@ public class UserTestController
 		
 		String expectedloginF="Invalid email";
 		
-		String actualloginF = userRestController.login("s@gmail.com", "1");
+		String actualloginF = userRestController.login("ss@gmail.com", "1");
 		assertEquals(expectedloginF, actualloginF);
 		
 	}

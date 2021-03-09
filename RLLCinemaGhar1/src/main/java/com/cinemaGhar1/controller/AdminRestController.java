@@ -99,8 +99,6 @@ public class AdminRestController
 		{
 			return "Invalid ADMIN";
 		}
-
-	
 	}
 	
 	@GetMapping("/login/admin/{email:.+}")

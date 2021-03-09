@@ -53,6 +53,27 @@ public class AdminDaoImpl implements AdminDao
 		Admin admin=(Admin) query.uniqueResult();
 		return admin;
 	}
+	
+	//METHOD FOR RETRIVING A ADMIN EMAIL BY EMAIL ID FROM ADMIN TABLE
+    //------------------------------------------------------------------
+    @Override
+    public String getAdminEmail(String email) {
+        Query query = getSession().createQuery("Select ad.email From Admin ad where email=:email");
+        query.setParameter("email", email);
+        String emailId=(String) query.uniqueResult();
+        return emailId;
+    }
+    //METHOD FOR RETRIVING A ADMIN PASSWORD BY ADMIN EMAIL ID FROM ADMIN TABLE
+    //------------------------------------------------------------------------
+  
+	@Override
+    public String getAdminPassword(String email)
+    {
+        Query query = getSession().createQuery("Select ad.pwd From Admin ad where email=:email");
+        query.setParameter("email", email);
+        String password=(String) query.uniqueResult();
+        return password;
+    }
 
 
 	

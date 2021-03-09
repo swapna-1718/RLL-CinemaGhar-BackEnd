@@ -9,6 +9,8 @@ public interface AdminDao
 	public boolean insert(Admin admin);
 	public List<Admin> getAdminById(String adminId);
 	public Admin getAdmin(String email);
+	 public String getAdminEmail(String email);
+	 public  String getAdminPassword(String email);
 	
 	
 }
